@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/ordrlist.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>Order</td>
+            <td></td>
+            
+            <form action="{% url 'search' %}" method="get">
+                <td><input type="text" name='search' placeholder="Search"></td>
+            <td><button type="submit">Search</button></td>
+            <td><button><a href="{% url 'index' %}">Add Order</a></button></td>
+        </form>
+        </tr>
+    </table>
+    <table>
+        <thead>
+            <th>
+                <tr>
+                    <td>Customer detail</td>
+                    <td>Product detail</td>
+                    <td>Qty</td>
+                    <td>Unit Price</td>
+                    <td>Total Price</td>
+                </tr>
+            </th>
+            <tbody>
+                {% for i in all_order %}
+                <tr>
+                    <td>{{i.customer_Id.fName}} {{i.customer_Id.lName}}</td>
+                    <td>{{i.product_Id.pName}}</td>
+                    <td>{{i.Quntity}}</td>
+                    <td>{{i.unit_Price}}</td>
+                    <td>{{i.total_Price}}</td>
+                    <td><a href="Edit">Edit</a></td>
+                    <td><a href="Delete">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </thead>
+    </table>
+</body>
+</html>

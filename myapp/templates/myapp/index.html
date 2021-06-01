@@ -1,0 +1,81 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Order Form</h1>
+    <div class="container">
+    <table>
+        
+            <tr>
+                <td>
+                    Customers :
+                </td>
+                <td>
+                    <select name="" id='customer_id'>
+                        <option value="">--Select Customer</option>
+                        {% for i in all_customers %}
+                        <option value="{{i.id}}">{{i.id}}.{{i.fName}} {{i.lName}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <hr>
+            <tr>
+                <td>
+                    Products :
+                </td>
+                <td>
+                    <select id="product" onchange="proprice(this.value)">
+                        <option value="200">--Select Products</option>
+                        {% for i in all_products %}
+                        <option  id='product_id' data-sid="{{i.id}}" value="{{i.unitPrice}}">{{i.id}}.{{i.pName}}</option>
+                        <option id='myshowPrice' data-sid="{{i.unitPrice}}" value="{{i.unitPrice}}" hidden>{{i.id}}.{{i.pName}}</option>
+                        <!-- <option id='product_id' data-sid="{{i.id}}"  value="{{i.id}}" hidden>{{i.id}}</option> -->
+
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Price :</td>
+                <td><input type="text" id="showPrice"></input></td>
+            </tr>
+            <tr>
+                <td>Qty</td>
+                <td><select id='qty' name="tot_pin_requested" onchange="calculateAmount(this.value)" required>
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Total Price :</td>
+                <td><input type="text" id="total"></input></td>
+            </tr>
+            <tr>
+                <td><button type="submit" id ='mybtnclick'>submit</button></td>
+            </tr>
+        
+    </table>
+    </div>
+    <script src="{% static 'js/jQuery.js' %}"></script>
+	{% include "myapp/ajax.html" %}
+    <script src="{% static 'js/orderform1.js' %}"></script>
+</body>
+</html>
