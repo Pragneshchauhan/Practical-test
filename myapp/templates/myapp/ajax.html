@@ -1,42 +1,42 @@
 <script>
 
-    console.log('hello');
-    console.log('hello');
-
-    
     let mybtnclick = document.getElementById('mybtnclick');
     
-    // console.log(customer_id);
     mybtnclick.addEventListener('click',function () {
         // debugger;
         console.log("submit btn clicked");
+        
         let customer_id = document.getElementById('customer_id').value;
-        console.log(customer_id);
-        // let product_id = document.getElementById('product_id').value;
-        // console.log(product_id);
+        
         let product_id = $('#product_id').attr('data-sid');
-        console.log(product_id);
+        
         let myshowPrice = $('#myshowPrice').attr('data-sid');
-    let qty = document.getElementById('qty').value;
-    console.log(qty);
-    let total = document.getElementById('total').value;
-    // calculateAmount();
-    // console.log(customer_id)
-    // console.log(product_id)
-    // console.log(myshowPrice)
-    // console.log(myqty)
-    // console.log(total)
+        
+        let qty = document.getElementById('qty').value;
+        
+        let total = document.getElementById('total').value;
+   
         // debugger;
 
         let mydata;
-        mydata = {'customer_id':customer_id,'product_id':product_id,'myshowPrice':myshowPrice,
-    'qty':qty,'total':total}
+        
+        mydata = {'customer_id':customer_id,
+                  'product_id':product_id,
+                  'myshowPrice':myshowPrice,
+                    'qty':qty,
+                  'total':total}
+        
         $.ajax({
             url : "{% url 'save_data' %}",
+            
             method : 'POST',
+            
             data : mydata,
+            
             success:function(data){
+                
                 console.log(data);
+                
             }
         })
     })
